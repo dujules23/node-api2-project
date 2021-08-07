@@ -4,9 +4,7 @@ const express = require('express');
 
 
 // Step 3 - Part 2 : Declare new router Variable (postsRouter)
-
-
-
+const postRouter = require("./posts/posts-router");
 
 
 
@@ -15,7 +13,7 @@ const server = express();
 server.use(express.json());
 
 // Step 3 - Part 1 : tell sever to use the new router (postsRouter)
-
+server.use("/api/posts", postRouter)
 
 // End Points
 
