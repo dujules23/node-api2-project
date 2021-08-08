@@ -53,7 +53,23 @@ router.get("/:id", (req, res) => {
     })
 })
 
-
+// Post or insert a new post
+router.post("/", (req, res) => {
+  const newPost = req.body
+  if(!newPost.title || !newPost.contents){
+    res.status(400).json({ message: "Please provide title and contents for the post"})
+  }
+  Posts.insert(newPost)
+    .then(post => {
+      res.status(201).json(post)
+    })
+    .catch(error => {
+      console.log(error);
+      res.status(500).json({
+        message: "There was an error while saving the post to the database"
+      })
+    })
+})
 
 
 
